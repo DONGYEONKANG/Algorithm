@@ -10,29 +10,31 @@
 
 
 
-def elec_bus(K,N,M_list):
+def elec_bus(K, N, M_list:list):
 
     pre = 0 # 현재 위치
     cnt = 0 # 카운트
     while True:
-        p = pre + K
+        # pre += K  # 현재 위치에서 갈수 있는 최대 값
+        pre += K
 
-        if p >= N:
+        if pre >= N:
             return cnt
 
         for i in range(0, K + 1):
-            pp = p - i
+            pp = pre - i  # 최댓 값 부터 ~ 최댓값 - K 까지
+
 
             if pp in M_list:
                 cnt += 1
                 pre = pp
                 break
 
-        if pp == p - K:
+        if pp == pre - K:
             return 0
 
 if __name__ == "__main__":
 
-    print(elec_bus(3,10,[1,3,7,8,9]))
+    print(elec_bus(3,10,[1,3,5,7,9]))
 
 
